@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: login-pod
+  labels:
+    name: login-pod
+    app: invitation-card
+spec:
+  containers:
+  - name: login
+    image: pokhari7353/login:v2
+    ports:
+    - containerPort: 3000
