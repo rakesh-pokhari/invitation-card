@@ -6,7 +6,14 @@ const {validationResult } = require('express-validator');
 
 app.use(bodyParser.json())
 
-app.get('/',(req,res,next)=>{
+app.post('/login',(req,res,next)=>{
+    res.status(200).json({
+        status:"OK"
+    });
+
+})
+
+app.post('/',(req,res,next)=>{
     res.status(200).json({
         status:"OK"
     });
