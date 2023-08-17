@@ -1,26 +1,18 @@
 const express=require('express');
-const app=express();
+const cookieParser = require('cookie-parser');
 const bodyParser=require('body-parser');
-const {validationResult } = require('express-validator');
+
+const PORT = 3000;
+const app=express();
 
 
-app.use(bodyParser.json())
 
-app.get('/',(req,res,next)=>{
-    res.status(200).json({
-        status:"OK"
-    });
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(require('./src/routes/authentication.route'));
+app.use(require('./src/routes/account.route'));
 
-})
-
-app.post('/signUp',(req,res,next)=>{
-    const request=req.body;
-
-    res.status(200).json({
-        data:request
-    })
-})
-
-app.listen(3000,()=>{
-    console.log('App is started on port 3000')
+//Start express server
+app.listen(PORT,()=>{
+    console.log(`Server is running on port: ${PORT}`);
 })
