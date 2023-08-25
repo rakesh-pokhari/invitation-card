@@ -1,12 +1,15 @@
 const express=require('express');
 const cookieParser = require('cookie-parser');
+const swaggerUi = require('swagger-ui-express');
 const bodyParser=require('body-parser');
+const yamljs = require("yamljs");
+const swaggerDocs = yamljs.load("./swaggerDocs/swagger.yaml");
 
 const PORT = 3000;
 const app=express();
 
 
-
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(require('./src/routes/authentication.route'));
